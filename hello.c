@@ -5,4 +5,5 @@
 int main()
 {
   cprintf("Hello, World!%d\n");
+  exit();
 }
