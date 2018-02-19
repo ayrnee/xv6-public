@@ -4,6 +4,6 @@
 
 int main()
 {
-  cprintf("Hello, World!%d\n");
+  cprintf("Hello, World!%d\n", 1);
   exit();
 }
