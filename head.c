@@ -9,11 +9,11 @@ void head(int fd){ //fd file descriptor
   while((n = read(fd,buffer,sizeof(buffer))) > 0){
     for(i = 0; i < n; ++i){
       printf(1, "%s", buffer[i]);
-      // if(buffer[i] == "\n"){
-      //
-      //   ++l;
-      //
-      // }
+      if(buffer[i] == "\n"){
+
+        ++l;
+
+      }
     }
   }
 }
