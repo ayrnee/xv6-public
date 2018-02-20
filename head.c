@@ -24,7 +24,7 @@ int main(int argc, char* argv[]){
     head(0);
   }
   else{
-    fd = open(argv[1], O_RDONLY);
+    fd = open(argv[1]);
     head(fd);
   }
   exit();
