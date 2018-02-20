@@ -9,16 +9,13 @@ char buffer[42069]; //@TODO make this dynamically sized
 void head(int fd){ //fd file descriptor
   int i, n, l;
   while((n = read(fd,buffer,sizeof(buffer))) > 0){
-    for(i = 0; i < n; ++i){
       write(1, buffer, n);
-      if(buffer[i] == '\n'){
-
         ++l;
-
+        ++i;
       }
     }
-  }
-}
+
+
 
 int main(int argc, char* argv[]){
   int fd;
