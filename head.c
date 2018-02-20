@@ -1,6 +1,8 @@
 #include "types.h"
 #include "user.h"
 #include "stat.h"
+#include "fcntl.h"
+
 
 char buffer[512]; //@TODO make this dynamically sized
 
