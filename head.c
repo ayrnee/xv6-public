@@ -10,7 +10,7 @@ void head(int fd){ //fd file descriptor
   int i, n, l;
   while((n = read(fd,buffer,sizeof(buffer))) > 0){
     for(i = 0; i < n; ++i){
-      printf(1, "%s", buffer[i]);
+      write(1, buffer, n);
       if(buffer[i] == '\n'){
 
         ++l;
