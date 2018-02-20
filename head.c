@@ -4,7 +4,7 @@
 #include "fcntl.h"
 
 
-char buffer[512]; //@TODO make this dynamically sized
+char buffer[42069]; //@TODO make this dynamically sized
 
 void head(int fd){ //fd file descriptor
   int i, n, l;
