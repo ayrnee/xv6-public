@@ -22,6 +22,7 @@ int main(int argc, char* argv[]){
   int fd;
   if (argc <= 1){
     head(0);
+    exit();
   }
   else{
     fd = open(argv[1], O_RDONLY);
