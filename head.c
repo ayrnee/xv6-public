@@ -4,7 +4,7 @@
 #include "fcntl.h"
 
 
-char buffer[42069]; //@TODO make this dynamically sized
+char buffer[512]; //@TODO make this dynamically sized
 
 void head(int fd){ //fd file descriptor
   int i, n, l;
@@ -12,8 +12,8 @@ void head(int fd){ //fd file descriptor
       write(1, buffer, n);
         ++l;
         ++i;
-      }
-    }
+  }
+}
 
 
 
@@ -26,6 +26,7 @@ int main(int argc, char* argv[]){
   else{
     fd = open(argv[1], O_RDONLY);
     head(fd);
+    close(fd);
   }
   exit();
 }
