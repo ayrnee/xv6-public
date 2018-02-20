@@ -27,5 +27,5 @@ int main(int argc, char* argv[]){
     fd = open(argv[1]);
     head(fd);
   }
-
+  exit();
 }
