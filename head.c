@@ -4,18 +4,42 @@
 #include "fcntl.h"
 
 
-char buffer[512]; //@TODO make this dynamically sized
+// char buffer[512]; //@TODO make this dynamically sized
 
+
+char* genBuffer(){
+  int size = 1024;
+  char *buffer = malloc(size * sizeof(char));
+  while (array == NULL && size > 0){
+    size = size/2;
+    buffer = malloc(size * sizeof(char));
+  }
+  return buffer;
+}
 void head(int fd){ //fd file descriptor
-  int i, n, l;
-  while((n = read(fd,buffer,sizeof(buffer))) > 0){
+  char *buffer = genbuffer()
+  if (!buffer){
+    exit();
+  }
+
+  int l = 0;
+  int i;
+
+  int n = read(fd,buffer,sizeof(buffer));
+  while(n > 0 && l < 10){
+      for(i = 0; i < n; ++i){
+        if(buff[i] == '\n'){
+          ++l;
+          if (l >= 10){
+            n = i;
+            break();
+          }
+        }
+      }
       write(1, buffer, n);
-        ++l;
-        ++i;
+      n = read(fd,buffer,sizeof(buffer))
   }
 }
-
-
 
 int main(int argc, char* argv[]){
   int fd;
