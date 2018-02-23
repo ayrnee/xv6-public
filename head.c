@@ -32,7 +32,7 @@ void head(int fd){ //fd file descriptor
           ++l;
           if (l >= 10){
             n = i;
-            break();
+            break;
           }
         }
       }
