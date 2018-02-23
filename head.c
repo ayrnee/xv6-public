@@ -38,7 +38,7 @@ void head(int fd){ //fd file descriptor
         }
       }
       write(1, buffer, n);
-      n = read(fd,buffer,sizeof(buffer))
+      n = read(fd,buffer,sizeof(buffer));
   }
 }
 
