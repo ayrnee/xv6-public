@@ -1,3 +1,4 @@
+#define NULL ((char *)0)
 #include "types.h"
 #include "user.h"
 #include "stat.h"
@@ -10,7 +11,7 @@
 char* genBuffer(){
   int size = 1024;
   char *buffer = malloc(size * sizeof(char));
-  while (array == NULL && size > 0){
+  while (buffer == NULL && size > 0){
     size = size/2;
     buffer = malloc(size * sizeof(char));
   }
