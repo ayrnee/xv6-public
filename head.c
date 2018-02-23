@@ -28,7 +28,7 @@ void head(int fd){ //fd file descriptor
   int n = read(fd,buffer,sizeof(buffer));
   while(n > 0 && l < 10){
       for(i = 0; i < n; ++i){
-        if(buff[i] == '\n'){
+        if(buffer[i] == '\n'){
           ++l;
           if (l >= 10){
             n = i;
