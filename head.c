@@ -17,7 +17,7 @@ char* genBuffer(){
   return buffer;
 }
 void head(int fd){ //fd file descriptor
-  char *buffer = genbuffer()
+  char *buffer = genBuffer()
   if (!buffer){
     exit();
   }
