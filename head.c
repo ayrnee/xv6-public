@@ -17,7 +17,7 @@ char* genBuffer(){
   }
   return buffer;
 }
-void head(int fd){ //fd file descriptor
+void head(int fd, int maxLines){ //fd file descriptor
   char *buffer = genBuffer();
   if (!buffer){
     exit();
@@ -27,7 +27,7 @@ void head(int fd){ //fd file descriptor
   int i;
 
   int n = read(fd,buffer,sizeof(buffer));
-  while(n > 0 && l < 10){
+  while(n > 0 && l < maxLines){
       for(i = 0; i < n; ++i){
         if(buffer[i] == '\n'){
           ++l;

@@ -2,8 +2,9 @@
 #include "user.h"
 #include "stat.h"
 
-int main()
+int main(int argc, char* argv[])
 {
-  printf(1, "Hello, World!");
-  exit(); 
+  // printf(1, "Hello, World!");
+  printf(1, "%s\n",argv[1]);
+  exit();
 }
