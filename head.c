@@ -17,6 +17,7 @@ char* genBuffer(){
   }
   return buffer;
 }
+
 void head(int fd, int maxLines){ //fd file descriptor
   char *buffer = genBuffer();
   if (!buffer){
@@ -45,12 +46,13 @@ void head(int fd, int maxLines){ //fd file descriptor
 int main(int argc, char* argv[]){
   int fd;
   if (argc <= 1){
-    head(0);
+    head(0,10);
     exit();
   }
   else{
+    if (argc == 2 && (int)argv[1] > 0)
     fd = open(argv[1], O_RDONLY);
-    head(fd);
+    head(fd,10);
     close(fd);
     exit();
   }
