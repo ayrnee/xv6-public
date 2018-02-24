@@ -31,7 +31,7 @@ void head(int fd){ //fd file descriptor
       for(i = 0; i < n; ++i){
         if(buffer[i] == '\n'){
           ++l;
-          printf(1, "Line %d",l);
+          // printf(1, "Line %d",l);
           if (l >= 10){
             n = i;
             break;
