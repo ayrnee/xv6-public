@@ -23,7 +23,7 @@ void head(int fd){ //fd file descriptor
     exit();
   }
 
-  int l = 0;
+  int l = 1;
   int i;
 
   int n = read(fd,buffer,sizeof(buffer));
