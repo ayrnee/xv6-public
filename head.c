@@ -50,11 +50,26 @@ int main(int argc, char* argv[]){
     exit();
   }
   else{
-    if (argc == 2 && (int)argv[1] > 0)
-    fd = open(argv[1], O_RDONLY);
-    head(fd,10);
-    close(fd);
-    exit();
+    if ( argc == 2 && argv[1][0] == '-' ){
+      head(0,(-1)*atoi(argv[1]));
+      exit();
+    }
+    else if( argc == 2 ){
+      fd = open(argv[1], O_RDONLY);
+      head(fd,10);
+      close(fd);
+      exit();
+    }
+    else if (argc >= 4){
+      exit();
+    }
+    else{
+      fd = open(argv[2], O_RDONLY);
+      head(fd,(-1)*atoi(argv[1]));
+      close(fd);
+      exit();
+    }
+
   }
   exit();
 }
