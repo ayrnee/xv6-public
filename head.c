@@ -23,7 +23,7 @@ void head(int fd, int maxLines){ //fd file descriptor
   if (!buffer){
     exit();
   }
-
+  printf(1,"%d\n", maxLines);
   int l = 0;
   int i;
 
