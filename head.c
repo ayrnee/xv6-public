@@ -23,7 +23,7 @@ void head(int fd){ //fd file descriptor
     exit();
   }
 
-  int l = 1;
+  int l = 0;
   int i;
 
   int n = read(fd,buffer,sizeof(buffer));
@@ -31,10 +31,9 @@ void head(int fd){ //fd file descriptor
       for(i = 0; i < n; ++i){
         if(buffer[i] == '\n'){
           ++l;
-          // printf(1, "Line %d",l);
           if (l >= 10){
-            n = i;
-            break;
+            write(1, buffer, i);
+            return;
           }
         }
       }
