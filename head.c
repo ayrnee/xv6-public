@@ -32,7 +32,7 @@ void head(int fd, int maxLines){ //fd file descriptor
       for(i = 0; i < n; ++i){
         if(buffer[i] == '\n'){
           ++l;
-          if (l >= 10){
+          if (l >= maxLines){
             write(1, buffer, i);
             return;
           }
