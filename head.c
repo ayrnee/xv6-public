@@ -51,7 +51,7 @@ int main(int argc, char* argv[]){
   }
   else{
     if ( argc == 2 && argv[1][0] == '-' ){
-      head(0,(-1)*atoi(argv[1]));
+      head(0,atoi(argv[1]));
       exit();
     }
     else if( argc == 2 ){
