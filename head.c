@@ -16,7 +16,8 @@ int strToInt(char* arg){
     ++len;
   }
   char val[len];
-  for (int i = 0; i < len ; ++i){
+  int i;
+  for (i = 0; i < len ; ++i){
     val[i] = arg[i+1];
   }
   printf(1,"%d\n",atoi(val));
