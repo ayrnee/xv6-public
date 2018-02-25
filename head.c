@@ -52,6 +52,7 @@ int main(int argc, char* argv[]){
   else{
     if ( argc == 2 && argv[1][0] == '-' ){
       printf(1,"%s\n",argv[1]);
+      printf(1,"%d\n",atoi(argv[1]));
       head(0,atoi(argv[1]));
       exit();
     }
