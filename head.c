@@ -7,6 +7,12 @@
 
 // char buffer[512]; //@TODO make this dynamically sized
 
+int strToInt(char* arg[]){
+  char* ptr = arg;
+  for (; *ptr != '\0'; ++ptr){
+    printf(1, "%c\n",*ptr);
+  }
+}
 
 char* genBuffer(){
   int size = 1024;
@@ -42,6 +48,8 @@ void head(int fd, int maxLines){ //fd file descriptor
       n = read(fd,buffer,sizeof(buffer));
   }
 }
+
+
 
 int main(int argc, char* argv[]){
   int fd;
