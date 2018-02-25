@@ -78,7 +78,7 @@ int main(int argc, char* argv[]){
     }
     else{
       fd = open(argv[2], O_RDONLY);
-      head(fd,strToInt(argv[1]);
+      head(fd,strToInt(argv[1]));
       close(fd);
       exit();
     }
