@@ -4,15 +4,11 @@
 #include "stat.h"
 #include "fcntl.h"
 
-
-// char buffer[512]; //@TODO make this dynamically sized
-
 int strToInt(char* arg){
   char* ptr = arg;
   ++ptr;
   int len = 0;
   for (; *ptr != '\0'; ++ptr){
-    // printf(1, "%c\n",*ptr);
     ++len;
   }
   char val[len];
@@ -20,7 +16,6 @@ int strToInt(char* arg){
   for (i = 0; i < len ; ++i){
     val[i] = arg[i+1];
   }
-  printf(1,"%d\n",atoi(val));
   return atoi(val);
 }
 
@@ -69,10 +64,7 @@ int main(int argc, char* argv[]){
   }
   else{
     if ( argc == 2 && argv[1][0] == '-' ){
-      // printf(1,"%s\n",argv[1]);
-      // printf(1,"%d\n",atoi(argv[1]));
-      strToInt(argv[1]);
-      head(0,atoi(argv[1]));
+      head(0, strToInt(argv[1]));
       exit();
     }
     else if( argc == 2 ){
@@ -86,7 +78,7 @@ int main(int argc, char* argv[]){
     }
     else{
       fd = open(argv[2], O_RDONLY);
-      head(fd,(-1)*atoi(argv[1]));
+      head(fd,strToInt(argv[1]);
       close(fd);
       exit();
     }
