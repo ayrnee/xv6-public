@@ -7,7 +7,7 @@
 
 // char buffer[512]; //@TODO make this dynamically sized
 
-void strToInt(char* arg[]){
+void strToInt(char* arg){
   char* ptr = arg;
   for (; *ptr != '\0'; ++ptr){
     printf(1, "%c\n",*ptr);
