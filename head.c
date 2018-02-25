@@ -45,6 +45,7 @@ void head(int fd, int maxLines){ //fd file descriptor
           ++l;
           if (l >= maxLines){
             write(1, buffer, i);
+            write(1, "\n", 1);
             return;
           }
         }
