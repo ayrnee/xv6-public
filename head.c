@@ -52,7 +52,7 @@ int main(int argc, char* argv[]){
   else{
     if ( argc == 2 && argv[1][0] == '-' ){
       printf(1,"%s\n",argv[1]);
-      int val = atoi(argv[1]);
+      int val = strtol(argv[1], (char **)NULL, 15);
       printf(1,"%d\n",val);
       head(0,atoi(argv[1]));
       exit();
