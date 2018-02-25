@@ -7,12 +7,20 @@
 
 // char buffer[512]; //@TODO make this dynamically sized
 
-void strToInt(char* arg){
+int strToInt(char* arg){
   char* ptr = arg;
+  ++ptr;
+  int len = 0;
   for (; *ptr != '\0'; ++ptr){
-    printf(1, "%c\n",*ptr);
+    // printf(1, "%c\n",*ptr);
+    ++len;
   }
-  return;
+  char val[len];
+  for (int i = 0; i < len ; ++i){
+    val[i] = arg[i+1];
+  }
+  printf(1,"%d\n",atoi(val));
+  return atoi(val);
 }
 
 char* genBuffer(){
