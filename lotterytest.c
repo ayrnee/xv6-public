@@ -1,6 +1,7 @@
 #include "types.h"
 #include "user.h"
 #include "date.h"
+#include "rand.h"
 
 // Do some useless computations
 void spin(int tix) {
