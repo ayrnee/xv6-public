@@ -4,6 +4,10 @@
 #include "rand.h"
 
 // Do some useless computations
+void settickets(int tick){
+  return;
+}
+
 void spin(int tix) {
     struct rtcdate end;
     unsigned x = 0;

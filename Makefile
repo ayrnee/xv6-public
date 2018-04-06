@@ -175,7 +175,6 @@ UPROGS=\
 	_zombie\
 	_hackbench\
 	_lotterytest\
-	_settickets\
 
 fs.img: mkfs README $(UPROGS)
 	./mkfs fs.img README $(UPROGS)
