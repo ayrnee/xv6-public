@@ -58,11 +58,11 @@ found:
     return 0;
   }
   sp = p->kstack + KSTACKSIZE;
-  
+
   // Leave room for trap frame.
   sp -= sizeof *p->tf;
   p->tf = (struct trapframe*)sp;
-  
+
   // Set up new context to start executing at forkret,
   // which returns to trapret.
   sp -= 4;
@@ -83,7 +83,7 @@ userinit(void)
 {
   struct proc *p;
   extern char _binary_initcode_start[], _binary_initcode_size[];
-  
+
   p = allocproc();
   initproc = p;
   if((p->pgdir = setupkvm()) == 0)
@@ -111,7 +111,7 @@ int
 growproc(int n)
 {
   uint sz;
-  
+
   sz = proc->sz;
   if(n > 0){
     if((sz = allocuvm(proc->pgdir, sz, sz + n)) == 0)
@@ -158,14 +158,14 @@ fork(void)
   np->cwd = idup(proc->cwd);
 
   safestrcpy(np->name, proc->name, sizeof(proc->name));
- 
+
   pid = np->pid;
 
   // lock to force the compiler to emit the np->state write last.
   acquire(&ptable.lock);
   np->state = RUNNABLE;
   release(&ptable.lock);
-  
+
   return pid;
 }
 
@@ -271,18 +271,48 @@ scheduler(void)
   struct proc *p;
   int foundproc = 1;
 
+  long totalTickets = 0;
+  long counter = 0;
+  long winner;
+
+  int gotTotal = 0;
+  int winnerFound = 0;
+
   for(;;){
     // Enable interrupts on this processor.
     sti();
 
     if (!foundproc) hlt();
-    foundproc = 0;
-
+    // foundproc = 0;
+    if (gotTotal == 1){
+      foundproc = 0;
+      winner = random_at_most(totalTickets);
+      totalTickets = 0;
+      counter = 0;
+      winnerFound = 0;
+    }
     // Loop over process table looking for process to run.
     acquire(&ptable.lock);
     for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
       if(p->state != RUNNABLE)
         continue;
+
+      if (gotTotal == 0){
+        totalTickets += p->tickets;
+        continue;
+      }
+
+      counter += p->tickets;
+
+      if (counter < winner){
+        totalTickets += p->tickets;
+        continue;
+      }
+
+      if (winnerFound){
+        totalTickets += p->tickets;
+        continue;
+      }
 
       // Switch to chosen process.  It is the process's job
       // to release ptable.lock and then reacquire it
@@ -296,10 +326,14 @@ scheduler(void)
 
       // Process is done running for now.
       // It should have changed its p->state before coming back.
+      if (p->state == RUNNABLE){
+        totalTickets += p->tickets;
+        winnerFound = 1;
+      }
       proc = 0;
     }
     release(&ptable.lock);
-
+    gotTotal = 1;
   }
 }
 
@@ -344,13 +378,13 @@ forkret(void)
 
   if (first) {
     // Some initialization functions must be run in the context
-    // of a regular process (e.g., they call sleep), and thus cannot 
+    // of a regular process (e.g., they call sleep), and thus cannot
     // be run from main().
     first = 0;
     iinit(ROOTDEV);
     initlog(ROOTDEV);
   }
-  
+
   // Return to "caller", actually trapret (see allocproc).
 }
 
@@ -455,7 +489,7 @@ procdump(void)
   struct proc *p;
   char *state;
   uint pc[10];
-  
+
   for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
     if(p->state == UNUSED)
       continue;
