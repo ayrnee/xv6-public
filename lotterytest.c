@@ -31,12 +31,12 @@ int main() {
     gettime(&start);
     printf(0, "starting test at %d hours %d minutes %d seconds\n", start.hour, start.minute, start.second);
     if ((pid1 = fork()) == 0) {
-        settickets(80);
+        settickets(60);
         spin(80);
         exit();
     }
     else if ((pid2 = fork()) == 0) {
-        settickets(20);
+        settickets(40);
         spin(20);
         exit();
     }
