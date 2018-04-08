@@ -275,8 +275,8 @@ scheduler(void)
   long counter = 0;
   long winner;
 
-  int gotTotal = 0;
-  int winnerFound = 0;
+  int calcTotal = 0;
+  int foundWinner = 0;
 
   for(;;){
     // Enable interrupts on this processor.
@@ -284,12 +284,12 @@ scheduler(void)
 
     if (!foundproc) hlt();
     // foundproc = 0;
-    if (gotTotal == 1){
+    if (calcTotal == 1){
       foundproc = 0;
       winner = random_at_most(totalTickets);
       totalTickets = 0;
       counter = 0;
-      winnerFound = 0;
+      foundWinner = 0;
     }
     // Loop over process table looking for process to run.
     acquire(&ptable.lock);
@@ -297,7 +297,7 @@ scheduler(void)
       if(p->state != RUNNABLE)
         continue;
 
-      if (gotTotal == 0){
+      if (calcTotal == 0){
         totalTickets += p->tickets;
         continue;
       }
@@ -309,7 +309,7 @@ scheduler(void)
         continue;
       }
 
-      if (winnerFound){
+      if (foundWinner){
         totalTickets += p->tickets;
         continue;
       }
@@ -328,12 +328,12 @@ scheduler(void)
       // It should have changed its p->state before coming back.
       if (p->state == RUNNABLE){
         totalTickets += p->tickets;
-        winnerFound = 1;
+        foundWinner = 1;
       }
       proc = 0;
     }
     release(&ptable.lock);
-    gotTotal = 1;
+    calcTotal = 1;
   }
 }
 

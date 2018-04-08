@@ -4,9 +4,6 @@
 #include "rand.h"
 
 // Do some useless computations
-// void settickets(int ticks){
-//   proc->pid->tickets
-// }
 
 void spin(int tix) {
     struct rtcdate end;
