@@ -32,12 +32,12 @@ int main() {
     printf(0, "starting test at %d hours %d minutes %d seconds\n", start.hour, start.minute, start.second);
     if ((pid1 = fork()) == 0) {
         settickets(60);
-        spin(80);
+        spin(60);
         exit();
     }
     else if ((pid2 = fork()) == 0) {
         settickets(40);
-        spin(20);
+        spin(40);
         exit();
     }
     // Go to sleep and wait for subprocesses to finish
